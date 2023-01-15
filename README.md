@@ -2,16 +2,17 @@
 
 My dwm source code repo
 
-## Installation
+## Requirements
 
-please install `X11` and `Jetbrains Mono` first:
+Install `X11` and `Jetbrains Mono` first:
 
 ```bash
 sudo pacman -S xorg xorg-init
 sudo pacman -S ttf-jetbrains-mono
+sudo pacman -S rofi
 ```
 
-then make to install:
+## Installation
 
 ```bash
 sudo make clean install
