@@ -55,12 +55,21 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *roficmd[] = { "rofi", "-show", "run" };
+static const char *roficmd[] = { "rofi", "-show", "run", NULL };
 static const char *termcmd[]  = { "st", NULL };
+static const char *lightdown[]= { "xbacklight", "-dec", "5", NULL };
+static const char *lightup[]= { "xbacklight", "-inc", "5", NULL };
+static const char *voldown[] = { "amixer", "-qM", "set", "Master", "5%-", "umute", NULL };
+static const char *volup[] = { "amixer", "-qM", "set", "Master", "5%+", "umute", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = roficmd } },
+	{ MODKEY|ShiftMask,             XK_i,      spawn,          {.v = lightup } },
+	{ MODKEY|ShiftMask,             XK_o,      spawn,          {.v = lightdown } },
+	{ MODKEY|ShiftMask,             XK_h,      spawn,          {.v = volup } },
+	{ MODKEY|ShiftMask,             XK_n,      spawn,          {.v = voldown } },
+	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
